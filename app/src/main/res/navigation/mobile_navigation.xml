@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_personal">
+
+    <fragment
+        android:id="@+id/nav_personal"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.LectureFragment"
+        android:label="@string/menu_personal"
+        tools:layout="@layout/fragment_lecture">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_classes"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.TimeTableFragment"
+        android:label="@string/menu_classes"
+        tools:layout="@layout/fragment_timetable" >
+        <argument
+            android:name="timetable_type"
+            app:argType="string"
+            android:defaultValue="sets" />
+        <argument
+            android:name="timetable_operation"
+            app:argType="string"
+            android:defaultValue="view" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_teachers"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.TimeTableFragment"
+        android:label="@string/menu_teachers"
+        tools:layout="@layout/fragment_timetable" >
+        <argument
+            android:name="timetable_type"
+            app:argType="string"
+            android:defaultValue="teacher" />
+        <argument
+            android:name="timetable_operation"
+            app:argType="string"
+            android:defaultValue="view" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_rooms"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.TimeTableFragment"
+        android:label="@string/menu_rooms"
+        tools:layout="@layout/fragment_timetable">
+        <argument
+            android:name="timetable_type"
+            app:argType="string"
+            android:defaultValue="room" />
+        <argument
+            android:name="timetable_operation"
+            app:argType="string"
+            android:defaultValue="view" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_subjects"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.TimeTableFragment"
+        android:label="@string/menu_subjects"
+        tools:layout="@layout/fragment_timetable"
+        >
+        <argument
+            android:name="timetable_type"
+            app:argType="string"
+            android:defaultValue="subject" />
+        <argument
+            android:name="timetable_operation"
+            app:argType="string"
+            android:defaultValue="view" />
+    </fragment>
+
+    <!-- Free Resources -->
+
+    <fragment
+        android:id="@+id/nav_free_classes"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.TimeTableFragment"
+        android:label="@string/menu_free_classes"
+        tools:layout="@layout/fragment_timetable">
+        <argument
+            android:name="timetable_type"
+            app:argType="string"
+            android:defaultValue="sets" />
+        <argument
+            android:name="timetable_operation"
+            app:argType="string"
+            android:defaultValue="search" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_free_teachers"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.TimeTableFragment"
+        android:label="@string/menu_free_teachers"
+        tools:layout="@layout/fragment_timetable">
+        <argument
+            android:name="timetable_type"
+            app:argType="string"
+            android:defaultValue="teacher" />
+        <argument
+            android:name="timetable_operation"
+            app:argType="string"
+            android:defaultValue="search" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_free_rooms"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.TimeTableFragment"
+        android:label="@string/menu_free_rooms"
+        tools:layout="@layout/fragment_timetable">
+        <argument
+            android:name="timetable_type"
+            app:argType="string"
+            android:defaultValue="room" />
+        <argument
+            android:name="timetable_operation"
+            app:argType="string"
+            android:defaultValue="search" />
+    </fragment>
+
+    <!-- End of Free Resources -->
+
+    <fragment
+        android:id="@+id/nav_vc_office"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.ContactFragment"
+        android:label="@string/vc_office"
+        tools:layout="@layout/fragment_contact"
+        />
+    <fragment
+        android:id="@+id/nav_info_center"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.HomeFragment"
+        android:label="@string/menu_info_center"
+        tools:layout="@layout/fragment_home"
+        />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="pk.edu.kfueit.timetables.ui.fragments.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings"
+        />
+
+</navigation>

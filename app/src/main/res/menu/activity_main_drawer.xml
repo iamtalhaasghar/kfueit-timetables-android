@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="View TimeTable">
+    <menu>
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_personal"
+            android:icon="@drawable/personal_timetable"
+            android:title="@string/menu_personal" />
+        <item
+            android:id="@+id/nav_classes"
+            android:icon="@drawable/class_icon"
+            android:title="@string/menu_classes" />
+        <item
+            android:id="@+id/nav_teachers"
+            android:icon="@drawable/teacher"
+            android:title="@string/menu_teachers" />
+        <item
+            android:id="@+id/nav_rooms"
+            android:icon="@drawable/room"
+            android:title="@string/menu_rooms" />
+        <item
+            android:id="@+id/nav_subjects"
+            android:icon="@drawable/book"
+            android:title="@string/menu_subjects" />
+    </group>
+    </menu>
+    </item>
+    <item android:title="Search">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_free_rooms"
+                    android:icon="@drawable/free_room"
+                    android:title="@string/menu_free_rooms" />
+                />
+                <item
+                    android:id="@+id/nav_free_classes"
+                    android:icon="@drawable/free_class"
+                    android:title="@string/menu_free_classes" />
+                <item
+                    android:id="@+id/nav_free_teachers"
+                    android:icon="@drawable/free_teacher"
+                    android:title="@string/menu_free_teachers" />
+            </group>
+        </menu>
+    </item>
+    <group >
+        <item
+            android:id="@+id/nav_vc_office"
+            android:icon="@drawable/complaint"
+            android:title="@string/vc_office" />
+        <item
+            android:id="@+id/nav_info_center"
+            android:icon="@drawable/news"
+            android:title="@string/menu_info_center" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/settings"
+            android:title="@string/menu_settings" />
+    </group>
+
+</menu>

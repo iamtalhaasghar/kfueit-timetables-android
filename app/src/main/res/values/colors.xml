@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#22B24C</color>
+    <color name="colorPrimaryDark">#008527</color>
+    <color name="colorAccent">#F11943</color>
+    <color name="colorPrimaryMaterial">#E4DAF3</color>
+    <color name="colorPrimaryDarkMaterial">#A48CDA</color>
+    <color name="colorAccentMaterial">#ADDDD9</color>
+    <color name="customGrayColor">#C9CACA</color>
+    <color name="uniBlueColor">#176AD1</color>
+    <color name="splashBackground">#1C728C</color>
+</resources>
