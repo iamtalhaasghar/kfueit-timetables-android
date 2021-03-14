@@ -95,19 +95,12 @@ public class TimeTable {
     }
 
 
-    public String getLatestTimeTableVersion() throws LoginException, EmptyListException {
-        ArrayList<String> allTimeTableNames = getTimeTableVersions();
-        return allTimeTableNames.get(allTimeTableNames.size() - 1);
-    }
+
 
     public String getTimeTableVersion() throws LoginException, EmptyListException {
-        if(timeTableVersion == null){
-            return getLatestTimeTableVersion();
-        }
         return timeTableVersion;
 
     }
-
 
 
     public ArrayList<String> getDepartments() throws LoginException, EmptyListException {
@@ -133,7 +126,7 @@ public class TimeTable {
     private ArrayList<String> getSelectOptions(String name) throws LoginException, EmptyListException {
 
         ArrayList<String> options = new ArrayList<>();
-        Document webPage = getHtml(TIME_TABLE_URL);
+        Document webPage = getHtml(urlOf(TIME_TABLE_VERSIONS_VAR, getTimeTableVersion()));
         Element selectTag = webPage.getElementsByAttributeValue("name", name).first();
         for (Element option : selectTag.getElementsByTag("option")) {
             String optionText = option.text().trim();
@@ -220,6 +213,13 @@ public class TimeTable {
         return url;
     }
 
+    private String urlOfTimeTableVersion(String timeTableVersion) throws LoginException, EmptyListException{
+        String url = String.format(LINK_FORMAT, TIME_TABLE_URL,
+                FILTER, "",
+                TIME_TABLE_VERSIONS_VAR, timeTableVersion, "", "");
+        return url;
+    }
+
     private String urlOf(String type, String name) throws LoginException, EmptyListException {
         String url = urlOfClass(name);
         if (type.equalsIgnoreCase(ROOMS_VAR)) {
@@ -228,6 +228,8 @@ public class TimeTable {
             url = urlOfTeacher(name);
         } else if (type.equalsIgnoreCase(SUBJECTS_VAR)) {
             url = urlOfSubject(name);
+        } else if (type.equalsIgnoreCase(TIME_TABLE_VERSIONS_VAR)) {
+            url = urlOfTimeTableVersion(name);
         }
         return url;
     }

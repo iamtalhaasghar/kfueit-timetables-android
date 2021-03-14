@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:gravity="center"
-            android:text="a sincere effort by"
+            android:text="(unofficial)"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="italic" />
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:gravity="center"
-            android:text="Talha Asghar"
+            android:text="KFUEIT Timetables App"
             android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textStyle="bold|italic" />
