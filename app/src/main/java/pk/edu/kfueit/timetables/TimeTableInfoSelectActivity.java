@@ -22,7 +22,7 @@ import pk.edu.kfueit.timetables.parser.TimeTable;
 import pk.edu.kfueit.timetables.threads.BackgroundListFetcher;
 import pk.edu.kfueit.timetables.threads.BackgroundTimeTableFetcher;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class TimeTableInfoSelectActivity extends AppCompatActivity {
 
 
 
@@ -31,12 +31,12 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_timetable_info_select);
 
         final RadioButton rbTeacher = findViewById(R.id.rbTeacher);
         Button btnContinue = findViewById(R.id.btnContinue);
 
-        final Context context = WelcomeActivity.this;
+        final Context context = TimeTableInfoSelectActivity.this;
 
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 if(rbTeacher.isChecked()){
                     timeTableType = TimeTable.TEACHERS_VAR;
                 }
-
+                final Data appData = new Data(context);
+                final String timeTableVersion = appData.getTimeTableVersion();
                 BackgroundListFetcher listFetcher = new BackgroundListFetcher(context, true, new BackgroundListHandler() {
                     @Override
                     public void handleList(List<String> tempList) {
@@ -57,23 +58,26 @@ public class WelcomeActivity extends AppCompatActivity {
                             builder.setItems(listItems, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    final String selectedItem = listItems[which];
+                                    final String timeTableName = listItems[which];
+
+                                    appData.saveTimeTableType(timeTableType);
+                                    appData.saveTimeTableName(timeTableName);
+
+
                                     BackgroundTimeTableFetcher tableFetcher = new BackgroundTimeTableFetcher(context, true,new BackgroundTimeTableHandler() {
                                         @Override
                                         public void handleTable(JSONObject timeTable) {
 
-                                            Data appData = new Data(context);
-                                            appData.saveTimeTableType(timeTableType);
-                                            appData.saveTimeTableName(selectedItem);
                                             appData.saveTimeTable(timeTable.toString());
-
                                             Toast.makeText(context, "Your TimeTable has been saved. You can view this time table offline now.", Toast.LENGTH_LONG).show();
+
                                             Intent intent = new Intent(context, MainActivity.class);
                                             startActivity(intent);
                                             finish();
                                         }
                                     });
-                                    tableFetcher.execute(TimeTable.OP_VIEW, timeTableType, selectedItem);
+                                    tableFetcher.execute(TimeTable.OP_VIEW, timeTableType, timeTableName, timeTableVersion);
+
                                 }
                             });
                             builder.create().show();
@@ -81,7 +85,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     }
                 });
 
-                listFetcher.execute(timeTableType);
+                listFetcher.execute(timeTableType, timeTableVersion);
 
             }
         });

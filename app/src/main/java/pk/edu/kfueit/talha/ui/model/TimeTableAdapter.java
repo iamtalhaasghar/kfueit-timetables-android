@@ -17,14 +17,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import pk.edu.kfueit.talha.R;
-import pk.edu.kfueit.talha.parser.TimeTable;
 
 import java.util.Locale;
 
-import static pk.edu.kfueit.talha.parser.TimeTable.*;
+import pk.edu.kfueit.timetables.R;
+import pk.edu.kfueit.timetables.parser.TimeTable;
 
-public class TimeTableAdapter extends RecyclerView.Adapter {
+import static pk.edu.kfueit.timetables.parser.TimeTable.*;
+
+
+public abstract class TimeTableAdapter extends RecyclerView.Adapter {
 
     private JSONObject timeTableData;
     private Context context;

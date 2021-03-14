@@ -8,12 +8,7 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
-
-import pk.edu.kfueit.timetables.Data;
 import pk.edu.kfueit.timetables.LoginActivity;
-import pk.edu.kfueit.timetables.R;
-import pk.edu.kfueit.timetables.WelcomeActivity;
 import pk.edu.kfueit.timetables.exception.EmptyListException;
 import pk.edu.kfueit.timetables.exception.LoginException;
 import pk.edu.kfueit.timetables.exception.NoTimeTableException;
@@ -48,11 +43,12 @@ public class BackgroundTimeTableFetcher extends AsyncTask<String, Void, JSONObje
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
-            if (args.length >= 3) {
+            if (args.length >= 4) {
                 String timeTableOperation = args[0];
                 String timeTableType = args[1];
                 String timeTableOf = args[2];
-                TimeTable timeTable = new TimeTable(context);
+                String timeTableVersion = args[3];
+                TimeTable timeTable = new TimeTable(context, timeTableVersion);
                 if (timeTableOperation.equals(TimeTable.OP_SEARCH)) {
                     if (timeTableOf.contains("Search")) {
                         return timeTable.searchFreeResourcesOfType(timeTableType);

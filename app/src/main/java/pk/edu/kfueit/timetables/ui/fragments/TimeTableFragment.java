@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import pk.edu.kfueit.timetables.Data;
 import pk.edu.kfueit.timetables.OnSwipeTouchListener;
 import pk.edu.kfueit.timetables.R;
 import pk.edu.kfueit.timetables.handlers.BackgroundListHandler;
@@ -37,6 +38,7 @@ public class TimeTableFragment extends Fragment implements BackgroundListHandler
 
     String timeTableType;
     String timeTableOperation;
+    String timeTableVersion;
     View root;
 
 
@@ -128,8 +130,11 @@ public class TimeTableFragment extends Fragment implements BackgroundListHandler
             }
         });
 
+        Data appData = new Data(getContext());
+        timeTableVersion = appData.getTimeTableVersion();
+
         BackgroundListFetcher listFetcher = new BackgroundListFetcher(getContext(),true, this);
-        listFetcher.execute(timeTableType);
+        listFetcher.execute(timeTableType, timeTableVersion);
         return root;
     }
 
@@ -168,7 +173,7 @@ public class TimeTableFragment extends Fragment implements BackgroundListHandler
                             timeTableAdapter.setTimeTable(timeTable);
                         }
                     });
-                    tableFetcher.execute(timeTableOperation, timeTableType, selectedItem);
+                    tableFetcher.execute(timeTableOperation, timeTableType, selectedItem, timeTableVersion);
                 }
             });
             builder.create().show();

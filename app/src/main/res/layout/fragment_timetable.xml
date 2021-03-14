@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.fragments.TimeTableFragment">
+    >
 
     <LinearLayout
         android:id="@+id/llWeeklyButtons"
@@ -20,49 +20,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mon" />
+            android:text="@string/mon" />
 
         <Button
             android:id="@+id/btnTueTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Tue" />
+            android:text="@string/tue" />
 
         <Button
             android:id="@+id/btnWedTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Wed" />
+            android:text="@string/wed" />
 
         <Button
             android:id="@+id/btnThuTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Thu" />
+            android:text="@string/thu" />
 
         <Button
             android:id="@+id/btnFriTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Fri" />
+            android:text="@string/fri" />
 
         <Button
             android:id="@+id/btnSatTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sat" />
+            android:text="@string/sat" />
 
         <Button
             android:id="@+id/btnSunTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sun" />
+            android:text="@string/sun" />
 
 
     </LinearLayout>

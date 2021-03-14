@@ -9,6 +9,7 @@ public class Data {
     private final String TIME_TABLE = "my_time_table";
     private final String TIME_TABLE_TYPE = "timetable_type";
     private final String TIME_TABLE_NAME = "timetable_name";
+    private final String TIME_TABLE_VERSION = "timetable_version";
     private final String COOKIE_NAME = "ci_session";
     private final String ROLL_NUMBER = "roll_number";
     private final String PASSWORD = "password";
@@ -68,6 +69,15 @@ public class Data {
     public String getTimeTableName(){
         return getSharedPreference().getString(TIME_TABLE_NAME,null);
     }
+
+    public void saveTimeTableVersion(String value){
+        getEditor().putString(TIME_TABLE_VERSION, value).commit();
+    }
+
+    public String getTimeTableVersion(){
+        return getSharedPreference().getString(TIME_TABLE_VERSION,null);
+    }
+
     public void saveLoginData(String rollNumber, String pass){
         getEditor().putString(ROLL_NUMBER, rollNumber).putString(PASSWORD, pass).commit();
     }

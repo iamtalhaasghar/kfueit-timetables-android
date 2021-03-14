@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     appData.saveCookieValue(getCookie(url, appData.getCookieName()));
                     appData.saveLoginData(etUsername.getText().toString(), etPassword.getText().toString());
-                    Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, TimeTableVersionActivity.class);
                     if (appData.isTimeTablePresent()) {
                         intent = new Intent(LoginActivity.this, MainActivity.class);
                     }

@@ -14,7 +14,7 @@ import pk.edu.kfueit.timetables.exception.LoginException;
 import pk.edu.kfueit.timetables.handlers.BackgroundListHandler;
 import pk.edu.kfueit.timetables.parser.TimeTable;
 
-public class BackgroundListFetcher extends AsyncTask<String, Void, ArrayList<String>> {
+public class BackgroundTimeTableVersionFetcher extends AsyncTask<Void, Void, ArrayList<String>> {
 
     ProgressDialog progressDialog;
     BackgroundListHandler listHandler;
@@ -23,7 +23,7 @@ public class BackgroundListFetcher extends AsyncTask<String, Void, ArrayList<Str
     String exMessage;
     boolean forceLogin;
 
-    public BackgroundListFetcher(Context context, boolean forceLogin, BackgroundListHandler listHandler){
+    public BackgroundTimeTableVersionFetcher(Context context, boolean forceLogin, BackgroundListHandler listHandler){
         progressDialog = new ProgressDialog(context);
         this.listHandler = listHandler;
         this.context = context;
@@ -35,24 +35,21 @@ public class BackgroundListFetcher extends AsyncTask<String, Void, ArrayList<Str
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Fetching list...");
+        progressDialog.setMessage("Fetching Time Table Versions List...");
         progressDialog.show();
     }
 
     @Override
-    protected ArrayList<String> doInBackground(String... args) {
+    protected ArrayList<String> doInBackground(Void...args) {
 
-        if(args.length > 1){
-            String timeTableType = args[0];
-            String timeTableVersion = args[1];
-            TimeTable timeTable = new TimeTable(context, timeTableVersion);
-            try {
-                return timeTable.getListOf(timeTableType);
-            } catch (EmptyListException | LoginException e) {
-                gotException = true;
-                exMessage = e.getMessage();
-            }
+        TimeTable timeTable = new TimeTable(context, null);
+        try {
+            return timeTable.getTimeTableVersions();
+        } catch (EmptyListException | LoginException e) {
+            gotException = true;
+            exMessage = e.getMessage();
         }
+
         return null;
     }
 

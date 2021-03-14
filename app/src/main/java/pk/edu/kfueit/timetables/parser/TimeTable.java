@@ -44,7 +44,7 @@ import pk.edu.kfueit.timetables.exception.NoTimeTableException;
  */
 public class TimeTable {
 
-    private static String daysOfWeek[] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+    public static String[] daysOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
     private static int toSkip[] = new int[daysOfWeek.length];
 
     private final static String TIME_TABLE_URL = "https://my.kfueit.edu.pk/users/testtable";
@@ -78,9 +78,12 @@ public class TimeTable {
     public final static String TYPE_INCOMPLETE = "incomplete";
 
     private Context context;
+    private final String timeTableVersion;
 
-    public TimeTable(Context context) {
+
+    public TimeTable(Context context, String timeTableVersion) {
         this.context = context;
+        this.timeTableVersion = timeTableVersion;
     }
 
     public static int totalDays(){
@@ -91,10 +94,21 @@ public class TimeTable {
         return getSelectOptions(TIME_TABLE_VERSIONS_VAR);
     }
 
+
     public String getLatestTimeTableVersion() throws LoginException, EmptyListException {
         ArrayList<String> allTimeTableNames = getTimeTableVersions();
         return allTimeTableNames.get(allTimeTableNames.size() - 1);
     }
+
+    public String getTimeTableVersion() throws LoginException, EmptyListException {
+        if(timeTableVersion == null){
+            return getLatestTimeTableVersion();
+        }
+        return timeTableVersion;
+
+    }
+
+
 
     public ArrayList<String> getDepartments() throws LoginException, EmptyListException {
         return getSelectOptions(DEPARTMENTS_VAR);
@@ -181,28 +195,28 @@ public class TimeTable {
     private String urlOfClass(String className) throws LoginException, EmptyListException {
         String url = String.format(LINK_FORMAT, TIME_TABLE_URL,
                 FILTER, "class",
-                TIME_TABLE_VERSIONS_VAR, getLatestTimeTableVersion(), CLASSES_VAR, className);
+                TIME_TABLE_VERSIONS_VAR, getTimeTableVersion(), CLASSES_VAR, className);
         return url;
     }
 
     private String urlOfRoom(String roomName) throws LoginException, EmptyListException {
         String url = String.format(LINK_FORMAT, TIME_TABLE_URL,
                 FILTER, ROOMS_VAR,
-                TIME_TABLE_VERSIONS_VAR, getLatestTimeTableVersion(), ROOMS_VAR, roomName);
+                TIME_TABLE_VERSIONS_VAR, getTimeTableVersion(), ROOMS_VAR, roomName);
         return url;
     }
 
     private String urlOfTeacher(String teacherName) throws LoginException, EmptyListException {
         String url = String.format(LINK_FORMAT, TIME_TABLE_URL,
                 FILTER, TEACHERS_VAR,
-                TIME_TABLE_VERSIONS_VAR, getLatestTimeTableVersion(), TEACHERS_VAR, teacherName);
+                TIME_TABLE_VERSIONS_VAR, getTimeTableVersion(), TEACHERS_VAR, teacherName);
         return url;
     }
 
     private String urlOfSubject(String subjectName) throws LoginException, EmptyListException {
         String url = String.format(LINK_FORMAT, TIME_TABLE_URL,
                 FILTER, SUBJECTS_VAR,
-                TIME_TABLE_VERSIONS_VAR, getLatestTimeTableVersion(), SUBJECTS_VAR, subjectName);
+                TIME_TABLE_VERSIONS_VAR, getTimeTableVersion(), SUBJECTS_VAR, subjectName);
         return url;
     }
 
@@ -232,7 +246,7 @@ public class TimeTable {
             JSONObject timeTable = new JSONObject();
             timeTable.put(URL_HEADING, url);
 
-            timeTable.put(VERSION_HEADING, getLatestTimeTableVersion());
+            timeTable.put(VERSION_HEADING, getTimeTableVersion());
             timeTable.put(NAME_HEADING, query);
             timeTable.put(TYPE_HEADING, TYPE_COMPLETE);
             for (Element tr : tbody.getElementsByTag("tr")) {
@@ -473,7 +487,7 @@ public class TimeTable {
             dataItem.put(LECTURES_HEADING, dataArray);
             dataItem.put(TOTAL_LEC_HEADING, 0);
             JSONObject completeData = new JSONObject();
-            completeData.put(VERSION_HEADING, getLatestTimeTableVersion());
+            completeData.put(VERSION_HEADING, getTimeTableVersion());
             completeData.put(NAME_HEADING, "Search Results");
             completeData.put(TYPE_HEADING,TYPE_INCOMPLETE);
             completeData.put(day, dataItem);
@@ -496,5 +510,6 @@ public class TimeTable {
         }
         return encapsulateData(dataArray, today);
     }
+
 
 }

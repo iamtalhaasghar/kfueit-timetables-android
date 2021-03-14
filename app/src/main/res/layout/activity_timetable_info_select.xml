@@ -7,17 +7,8 @@
     android:background="@color/splashBackground"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".WelcomeActivity">
+    tools:context=".TimeTableInfoSelectActivity">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:gravity="center"
-        android:text="Welcome To KFUEIT\nTime Tables App"
-        android:textColor="@android:color/white"
-        android:textSize="24sp" />
 
     <RadioGroup
         android:layout_width="wrap_content"
