@@ -1,6 +1,3 @@
-// ***REMOVED***
-// ***REMOVED***
-
 package pk.edu.kfueit.talha.ui.model;
 
 import android.content.Context;
